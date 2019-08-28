@@ -21,13 +21,14 @@ const removeNote = function(id) {
 	});
 	if (noteIndex > -1) {
 		notes.splice(noteIndex, 1);
+		saveNotes(notes);
 	}
 };
 
 //generate the DOM stracture for a note
 const generateNoteDOM = function(note) {
 	const noteEl = document.createElement('div');
-	const textEl = document.createElement('span');
+	const textEl = document.createElement('a');
 	const button = document.createElement('button');
 
 	//remove note bttn
@@ -44,6 +45,7 @@ const generateNoteDOM = function(note) {
 	} else {
 		textEl.textContent = 'Unnamed Note';
 	}
+	textEl.setAttribute('href', `/edit.html#${note.id}`);
 	noteEl.appendChild(textEl);
 
 	return noteEl;
